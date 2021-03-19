@@ -343,7 +343,7 @@ public class CaseController {
 						notification.setDelayMsec(-1);
 						notification.show(Page.getCurrent());
 					} else {
-						Notification.show(I18nProperties.getString(Strings.messageCaseSaved), Type.WARNING_MESSAGE);
+						Notification.show(I18nProperties.getString(Strings.messageCaseSaved), Type.TRAY_NOTIFICATION);
 					}
 					SormasUI.refreshView();
 				}
@@ -361,7 +361,7 @@ public class CaseController {
 				notification.setDelayMsec(-1);
 				notification.show(Page.getCurrent());
 			} else {
-				Notification.show(I18nProperties.getString(Strings.messageCaseSaved), Type.WARNING_MESSAGE);
+				Notification.show(I18nProperties.getString(Strings.messageCaseSaved), Type.TRAY_NOTIFICATION);
 			}
 			SormasUI.refreshView();
 		}
