@@ -135,6 +135,8 @@ public class ConfigFacadeEjb implements ConfigFacade {
 
 	private static final String CREATE_DEFAULT_ENTITIES = "createDefaultEntities";
 
+	private static final String IRIS_SERVER_URL = "iris.serverUrl";
+
 	private static final String STEP_SIZE_FOR_CSV_EXPORT = "stepSizeForCsvExport";
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -583,6 +585,11 @@ public class ConfigFacadeEjb implements ConfigFacade {
 	@Override
 	public String getDemisJndiName() {
 		return getProperty(INTERFACE_DEMIS_JNDINAME, null);
+	}
+
+	@Override
+	public String getIrisServerUrl() {
+		return getProperty(IRIS_SERVER_URL, null);
 	}
 
 }
