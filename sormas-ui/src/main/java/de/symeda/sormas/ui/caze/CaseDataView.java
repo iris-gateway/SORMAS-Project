@@ -37,6 +37,8 @@ import de.symeda.sormas.ui.caze.surveillancereport.SurveillanceReportListCompone
 import de.symeda.sormas.ui.docgeneration.CaseDocumentsComponent;
 import de.symeda.sormas.ui.events.eventLink.EventListComponent;
 import de.symeda.sormas.ui.externalsurveillanceservice.ExternalSurveillanceServiceGateway;
+import de.symeda.sormas.ui.iris.IrisContext;
+import de.symeda.sormas.ui.iris.IrisListComponent;
 import de.symeda.sormas.ui.samples.sampleLink.SampleListComponent;
 import de.symeda.sormas.ui.sormastosormas.SormasToSormasListComponent;
 import de.symeda.sormas.ui.task.TaskListComponent;
@@ -56,6 +58,7 @@ public class CaseDataView extends AbstractCaseView {
 
 	public static final String VIEW_NAME = ROOT_VIEW_NAME + "/data";
 
+	public static final String IRIS_LOC = "iris";
 	public static final String CASE_LOC = "case";
 	public static final String TASKS_LOC = "tasks";
 	public static final String SAMPLES_LOC = "samples";
@@ -79,6 +82,7 @@ public class CaseDataView extends AbstractCaseView {
 
 		String htmlLayout = LayoutUtil.fluidRow(
 			LayoutUtil.fluidColumnLoc(8, 0, 12, 0, CASE_LOC),
+			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, IRIS_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, TASKS_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, SAMPLES_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, EVENTS_LOC),
@@ -112,6 +116,10 @@ public class CaseDataView extends AbstractCaseView {
 		editComponent.getWrappedComponent().setWidth(100, Unit.PERCENTAGE);
 		editComponent.addStyleName(CssStyles.MAIN_COMPONENT);
 		layout.addComponent(editComponent, CASE_LOC);
+
+		IrisListComponent irisList = new IrisListComponent(IrisContext.CASE, getCaseRef());
+		irisList.addStyleName(CssStyles.SIDE_COMPONENT);
+		layout.addComponent(irisList, IRIS_LOC);
 
 		if (FacadeProvider.getFeatureConfigurationFacade().isFeatureEnabled(FeatureType.TASK_MANAGEMENT)) {
 			TaskListComponent taskList = new TaskListComponent(TaskContext.CASE, getCaseRef());

@@ -124,4 +124,6 @@ public interface ConfigFacade {
 	boolean isAuditorAttributeLoggingEnabled();
 
 	int getStepSizeForCsvExport();
+
+	String getIrisServerUrl();
 }
