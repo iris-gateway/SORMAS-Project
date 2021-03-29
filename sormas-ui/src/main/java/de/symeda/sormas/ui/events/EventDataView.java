@@ -43,6 +43,8 @@ import de.symeda.sormas.ui.events.eventLink.EventListComponent;
 import de.symeda.sormas.ui.events.eventLink.SuperordinateEventComponent;
 import de.symeda.sormas.ui.externalsurveillanceservice.ExternalSurveillanceServiceGateway;
 import de.symeda.sormas.ui.externalsurveillanceservice.ExternalSurveillanceShareComponent;
+import de.symeda.sormas.ui.iris.IrisContext;
+import de.symeda.sormas.ui.iris.IrisListComponent;
 import de.symeda.sormas.ui.sormastosormas.SormasToSormasListComponent;
 import de.symeda.sormas.ui.task.TaskListComponent;
 import de.symeda.sormas.ui.utils.ButtonHelper;
@@ -57,6 +59,7 @@ public class EventDataView extends AbstractEventView {
 
 	public static final String VIEW_NAME = ROOT_VIEW_NAME + "/data";
 
+	public static final String IRIS_LOC = "iris";
 	public static final String EVENT_LOC = "event";
 	public static final String TASKS_LOC = "tasks";
 	public static final String ACTIONS_LOC = "actions";
@@ -82,6 +85,7 @@ public class EventDataView extends AbstractEventView {
 
 		String htmlLayout = LayoutUtil.fluidRow(
 			LayoutUtil.fluidColumnLoc(8, 0, 12, 0, EVENT_LOC),
+			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, IRIS_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, TASKS_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 6, 0, ACTIONS_LOC),
 			LayoutUtil.fluidColumnLoc(4, 0, 12, 0, DOCUMENTS_LOC),
@@ -113,6 +117,10 @@ public class EventDataView extends AbstractEventView {
 
 		externalSurvToolLayout = ExternalSurveillanceServiceGateway.addComponentToLayout(layout, editComponent, getEventRef());
 		setExternalSurvToolLayoutVisibility(event.getEventStatus());
+
+		IrisListComponent irisList = new IrisListComponent(IrisContext.EVENT, getEventRef());
+		irisList.addStyleName(CssStyles.SIDE_COMPONENT);
+		layout.addComponent(irisList, IRIS_LOC);
 
 		if (FacadeProvider.getFeatureConfigurationFacade().isFeatureEnabled(FeatureType.TASK_MANAGEMENT)) {
 			TaskListComponent taskList = new TaskListComponent(TaskContext.EVENT, getEventRef());
